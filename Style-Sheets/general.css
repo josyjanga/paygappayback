@@ -7,6 +7,8 @@
 }
 html, body {
   font-family: 'specialelite', monospace;
+  margin: 0;
+  padding: 0;
 }
 body {
   line-height: 1.6em;
@@ -15,6 +17,10 @@ body {
   font-size: 100%;
   word-break: break-word;
 }
+h2 {
+  margin-bottom: 0.7em;
+  margin-top: 1.5em;
+}
 p {
   margin-top: 0.5em;
   margin-bottom: 1em;
@@ -22,4 +28,25 @@ p {
 
 ul {
   margin-top: 0em;
+}
+button {
+  border: 2px dashed;
+    padding: 1em;
+    text-transform: uppercase;
+    border-color: #1c6a62;
+    background-color: #eafffd;
+    font-weight: bold;
+    margin: auto auto;
+    text-align: center;
+    display: flex;
+    cursor: pointer;
+}
+button:focus, button:hover {
+  color: #fff;
+  background-color: #1c6a62;
+}
+.gap {
+  padding: 2em;
+  width: 80vw;
+  margin: 0 auto;
 }

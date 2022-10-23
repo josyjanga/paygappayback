@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Paygap Payback</title>
+	<title>Pay-Gap Payback</title>
 
 	<link rel="stylesheet" type="text/css" href="Style-Sheets/JS_game.css">
 	<link rel="stylesheet" type="text/css" href="Style-Sheets/InstructionsModal.css">
@@ -22,7 +22,7 @@
 
 <body onload="showInstructions()" onkeydown="KeyDown(event)" onkeyup="KeyUp(event)" ondragend="onMouseUp()">
 	<!-- Banner -->
-	<img id="banner" src="Pictures/banner.png">
+	<h1 id="banner">Pay-Gap Payback</h1>
 
 	<!--Audio elements-->
 	<audio id="bgm" style="display: none" controls>
@@ -69,7 +69,7 @@
 
 		<div class="modal-content">
 			<h2>Welcome!</h2>
-			This is a cynical game about the Gender Paygap. If you are into numbers, please <a href="paygap.html">read more about this this topic</a>.
+			This is a cynical game about the gender pay gap. If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.
 			<h3>Instructions</h3>
 
 			<p>How to play:</p>
@@ -101,11 +101,12 @@
 	<div id="gameOverModal" class="modal">
 		<div class="modal-content">
 
-			<img class="gameOverLabel" src="Pictures/game_over.png" alt="GAME OVER">
+			<h2><span>Game Over</span></h2>
 
-			<p class="gameOverDesc">TODO gender paygap descripton with coins to meet goal: <strong class="missing-coins"></strong></p>
+			<p class="gameOverDesc">Collected coins: <span id="coinscollected"></span></p>
+			<p>Your coins will be added to the gender pay gap of this game. Missing coins: <strong class="missing-coins"></strong></p>
 
-			<button type="button" onClick="initialize_game(character)">Restart and add coins to gender pay gap</button>
+			<button type="button" onClick="initialize_game(character)">Add coins to gender pay gap and restart game</button>
 
 		</div>
 	</div>

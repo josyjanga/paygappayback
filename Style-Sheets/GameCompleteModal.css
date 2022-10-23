@@ -82,19 +82,21 @@
 }
 
 .btn-start {
-    height: 10rem;
-    width: 8rem;
+    height: 8rem;
+    width: 6rem;
     border: 1px solid transparent;
     cursor: pointer;
-    padding-top: 13em;
     font-size: 0.8em;
+    margin: 0;
 }
 .btn-start:hover, .btn-start:focus {
     border: 1px dashed #1c6a62;
 }
 .btn-male {
-    background: url("../Pictures/male.svg") no-repeat;
+    background: url("../Pictures/male.svg") no-repeat 0 1.3em;
+    background-size: 80%;
 }
 .btn-female {
-    background: url("../Pictures/female.svg") no-repeat;
+    background: url("../Pictures/female.svg") no-repeat 0 1.3em;
+    background-size: 80%;
 }
