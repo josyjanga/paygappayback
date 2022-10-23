@@ -69,7 +69,9 @@
 
 		<div class="modal-content">
 			<h2>Welcome!</h2>
-			This is a cynical game about the gender pay gap. If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.
+			<p>This is a game about the gender pay gap. Professional E-Sports women earn around 100.000 Dollar less then men with the same profession. In this game you will collect coins to settle this gap.</p>
+			<p>Missing coins: <span class="missing-coins"></span></p>
+			<p>If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.</p>
 			<h3>Instructions</h3>
 
 			<p>How to play:</p>
@@ -113,11 +115,12 @@
 
 	<div id="gameCompleteModal" class="modal">
 		<div class="modal-content">
-			<img class="gameOverLabel" src="Pictures/victory.png" alt="VICTORY">
+			<h2><span>Victory</span></h2>
 			<p class="gameOverDesc">You completed the game! Awesome Work!</p>
-			<p id="voice" class="levelTransitionMessage"><img src="Pictures/voice.png" alt="Voice character with 2 eyes"></p>
-			
-			<p id="gameOverInfo"></p>
+			<p id="voice" class="levelTransitionMessage">
+				<img src="Pictures/voice.png" alt="Voice character with 2 eyes">
+				<div id="gameOverInfo"></div>
+			</p>
 
 			<button type="button" id="btnSuccessUploadCoins" onClick="gameCompleteUploadCoins()">
 				Upload coins
@@ -255,15 +258,16 @@
 
 	<div id="levelTransitionModal" class="modal">
 		<div id="levelTransitionModalContent" class="modal-content">
-			<img class="gameOverLabel" src="Pictures/victory.png" alt="VICTORY">
+			<h2><span>Victory</span></h2>
 			<p class="levelTransitionMessage">Level complete!</p>
-			<p class="levelTransitionMessage">Press c to continue</p>
+			
 
+			<div id="levelTransitiondynamicModalContent"></div>
 			<button type="button" class="" onClick="resumeGame()">
 				Go to next level
 			</button>
+			<p class="levelTransitionMessage2">Press c to continue</p>
 			
-			<div id="levelTransitiondynamicModalContent"></div>
 		</div>
 	</div>
 
@@ -271,24 +275,24 @@
 	<div id="buttonWrapper">
 		<div id="buttonRestart">
 			<button id="restartButtonLeft" class="button" onClick="restartGame()">
-				<img class="buttonImages" src="Pictures/restart.png" alt="RestartButton" />
+				Restart
 			</button>
 		</div>
 		<div id="buttonController">
-			<button class="button" onmousedown="moveLeftMouse()" onmouseup="onMouseUp()" ontouchstart="moveLeftMouse()"
+			<button onmousedown="moveLeftMouse()" onmouseup="onMouseUp()" ontouchstart="moveLeftMouse()"
 				ontouchend="onMouseUp()">
-				<img class="buttonImages" src="Pictures/left.png" alt="LEFT">
+				Left
 			</button>
-			<button class="button" onmousedown="moveUp()" ontouchstart="moveUp()">
-				<img class="buttonImages" src="Pictures/jump.png" alt="JUMP">
+			<button onmousedown="moveUp()" ontouchstart="moveUp()">
+				Jump
 			</button>
-			<button class="button" onmousedown="duck()" onmouseup="duckMouseUp()" ontouchstart="duck()"
+			<button  onmousedown="duck()" onmouseup="duckMouseUp()" ontouchstart="duck()"
 				ontouchend="duckMouseUp()">
-				<img class="buttonImages" src="Pictures/duck.png" alt="DUCK">
+				Duck
 			</button>
-			<button class="button" onmousedown="moveRightMouse()" onmouseup="onMouseUp()" ontouchstart="moveRightMouse()"
+			<button  onmousedown="moveRightMouse()" onmouseup="onMouseUp()" ontouchstart="moveRightMouse()"
 				ontouchend="onMouseUp()">
-				<img class="buttonImages" src="Pictures/right.png" alt="RIGHT">
+				Right
 			</button>
 		</div>
 		<div id="buttonPauseAudio">

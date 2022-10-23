@@ -8,8 +8,6 @@ body {
   margin-right: auto;
   text-align: center;
   text-transform: uppercase;
-  border-bottom: 2px dashed;
-  border-top: 2px dashed;
   padding: 0.3em;
   margin-bottom: 1em;
 }
@@ -152,4 +150,5 @@ canvas {
 
 #voice img {
   width: 4em;
+  background-color: #ff9;
 }

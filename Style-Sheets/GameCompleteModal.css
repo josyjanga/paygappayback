@@ -57,7 +57,7 @@
 .gameOverDesc {
     text-align: center;
     font-size: 20px;
-    color: #54300e;
+    color: #1c8378;
 }
 
 .gamePause {
@@ -78,9 +78,12 @@
 
 .levelTransitionMessage {
   text-align: center;
-  font-size: 20px;
+  font-size: 1.2em;
 }
-
+.levelTransitionMessage2 {
+    text-align: center;
+    font-size: 0.7em;
+}
 .btn-start {
     height: 8rem;
     width: 6rem;
