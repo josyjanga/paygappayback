@@ -152,3 +152,12 @@ canvas {
   width: 4em;
   background-color: #ff9;
 }
+
+.imore {
+  height: 0;
+  overflow: hidden;
+  transition: height 1s;
+}
+.imore.open {
+  height: auto;
+}
