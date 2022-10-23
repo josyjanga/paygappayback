@@ -219,7 +219,7 @@ var coinScoreBoard;
 var coinScoreBoardImg;
 var coinScoreBoardSupImg;
 var highscoreBoard;
-var refreshMissingCoinsTimeout = 1000; //in ms
+var refreshMissingCoinsInterval = 1000; //in ms
 
 var startArrow1;
 var startArrow2;
@@ -420,7 +420,7 @@ function showInstructions() {
 	//background
 	background = new Component();
 	background.init(gameArea.canvas.width, gameArea.canvas.height, 'Pictures/background_1.jpg', 0, 0, 'image', WALKING, true);
-	
+
 	var modal = document.getElementById('instructionsModal');
 	modal.style.display = 'block';
 
@@ -1334,20 +1334,15 @@ function gameCompleteUploadCoins() {
 	window.fb.addCoins(this.collectedCoins);
 	collectedCoins = 0;
 	currentCoins = 0;
-
-	let missingCoins = window.fb.getMissingCoins();
-	alert("missing coins: " + missingCoins);
-
 	//TODO: show success info for coin upload
 }
 
-setTimeout(refreshMissingCoins, refreshMissingCoinsTimeout);
+setInterval(refreshMissingCoins, refreshMissingCoinsInterval);
 
 function refreshMissingCoins() {
 	var currentValue = window.fb.getMissingCoins();
-	console.log("got current value", currentValue);
 	if (currentValue != missingCoins) {
-		console.log("called update");
+		// console.log("missingcoins:", currentValue);
 		missingCoins = currentValue;
 		updateMissingCoins();
 	}
@@ -1355,12 +1350,12 @@ function refreshMissingCoins() {
 
 function domUpdateInnerTextForClassName(className, innerText, showAsFormattedNumber) {
 
-	if(showAsFormattedNumber) {
+	if (showAsFormattedNumber) {
 		innerText = numberWithCommas(innerText);
 	}
 
 	var elements = document.getElementsByClassName(className);
-	if(elements) {
+	if (elements) {
 		for (var i = 0; i < elements.length; i++) {
 			elements[i].innerText = innerText;
 		}
@@ -1368,5 +1363,45 @@ function domUpdateInnerTextForClassName(className, innerText, showAsFormattedNum
 }
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function gameOverRestartGame(sender) {
+
+	sender.disabled = true;
+
+	//count up/down
+	countDownMissingCoins().then(() => {
+		initialize_game(character);
+		sender.disabled = false;
+	});
+}
+
+function countDownMissingCoins() {
+	return new Promise((resolve, reject) => {
+		var missingCoins = window.fb.getMissingCoins();
+		let counts = collectedCoins;
+		if (missingCoins - counts < 0) {
+			counts = missingCoins;
+		}
+		var totalAnimationTime = 2000;
+		var timeout = counts > 0 ? totalAnimationTime / counts : 0;
+		var waitingTime = 2000;
+
+		function countDown() {
+			if (counts > 0) {
+				counts--;
+				missingCoins--;
+				domUpdateInnerTextForClassName("missing-coins", missingCoins, true);
+				domUpdateInnerTextForClassName("coins-collected", counts, true);
+
+				setTimeout(countDown, timeout);
+			}
+			else {
+				setTimeout(function() { resolve(0); }, waitingTime);
+			}
+		}
+
+		setTimeout(countDown);
+	});
 }
