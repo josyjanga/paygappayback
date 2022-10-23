@@ -867,11 +867,11 @@ function gameComplete() {
 	var btncharacter2 = document.getElementById('btnmale');
 	if (character == 1) {
 		msggame = `Congratulations! You did a good job and mastered all levels. I hope that is enough appreciation for you. I could not give you more coins throughout the game, the other characters in the game already got most of it. But I really have to say again: You are a top player; you managed more obstacles than any other character in this game!`;
-		btncharacter1.style.display = "none";
-		btncharacter2.style.display = "block";
+		//btncharacter1.style.display = "none";
+		//btncharacter2.style.display = "block";
 	} else {
-		btncharacter2.style.display = "none";
-		btncharacter1.style.display = "block";
+		//btncharacter2.style.display = "none";
+		//btncharacter1.style.display = "block";
 	}
 
 	gameinfo.innerHTML = msggame;
