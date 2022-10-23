@@ -150,14 +150,16 @@ canvas {
 
 #voice img {
   width: 4em;
-  background-color: #ff9;
 }
-
-.imore {
+#more {
+  display: inline;
+  padding: 0.2em 0.5em;
+}
+#imore {
   height: 0;
   overflow: hidden;
   transition: height 1s;
 }
-.imore.open {
+#imore.open {
   height: auto;
 }

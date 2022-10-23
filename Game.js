@@ -179,7 +179,7 @@ const LEVEL_CLOUDS = [{
 const font = 'SpecialElite-Regular.ttf';
 const totalLevels = 5; //This constant is very important--it tells the game how many levels it has.
 const coinWidth = 30;
-const LEVEL_COMPLETION_TIME = 1000;
+const LEVEL_COMPLETION_TIME = 100;
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 100);
 const MAX_VARIABLES_ENEMIES_0 = Math.floor(LEVEL_COMPLETION_TIME / 300);
 const MAX_VARIABLES_COINS_0 = Math.floor(LEVEL_COMPLETION_TIME / 50);
@@ -423,7 +423,12 @@ function showInstructions() {
 	
 	var modal = document.getElementById('instructionsModal');
 	modal.style.display = 'block';
-
+	var more = document.getElementById('more');
+	var imore = document.getElementById('imore');
+	more.addEventListener("click", function() {
+	more.classList.toggle("open");
+	imore.classList.toggle("open");
+	})
 	updateMissingCoins();
 }
 
@@ -994,28 +999,29 @@ function updateGameArea() {
 			var levelTransitionModal = document.getElementById('levelTransitionModal');
 			levelTransitionModal.style.display = 'block';
 			var levelTransitionModalContent = document.getElementById('levelTransitiondynamicModalContent');
-			levelTransitionModalContent.innerHTML = `<p id="coinsMsg" class="levelTransitionMessage">Coins earned: ${currentCoins}</p>`;
-			levelTransitionModalContent.innerHTML += `<p id="voice" class="levelTransitionMessage"><img src="Pictures/voice.png" alt="Voice character with 2 eyes"></p>`;
+			var coinsContent = document.getElementById('coinsContent');
+			coinsContent.innerHTML = `<p id="coinsMsg" class="levelTransitionMessage">Coins earned: ${currentCoins}</p>`;
+			levelTransitionModalContent.innerHTML = `<div id="voice" class="levelTransitionMessage"><img src="Pictures/voice.png" alt="Voice character with 2 eyes"></div>`;
 			var msg = "";
 			if (currentLevel == 2) {
-				msg = `<p class="levelTransitionMessage message">You have seen a lot of coins – good for you!</p>`;
+				msg = `<div class="levelTransitionMessage message">You have seen a lot of coins – good for you!</div>`;
 				if (character == 1) {
-					msg = `<p class="levelTransitionMessage message">This level did not hold lots of coins for you, sorry.</p>`;
+					msg = `<div class="levelTransitionMessage message">This level did not hold lots of coins for you, sorry.</div>`;
 				}
 			} else if (currentLevel == 3) {
-				msg = `<p class="levelTransitionMessage message">I helped you a little bit with the obstacles ;)</p>`;
+				msg = `<div class="levelTransitionMessage message">I helped you a little bit with the obstacles ;)</div>`;
 				if (character == 1) {
-					msg = `<p class="levelTransitionMessage message">You did a good job, but I cannot give out more coins. I have to feed all players.</p>`;
+					msg = `<div class="levelTransitionMessage message">You did a good job, but I cannot give out more coins. I have to feed all players.</div>`;
 				}
 			} else if (currentLevel == 4) {
-				msg = `<p class="levelTransitionMessage message">Ok, let us get you more coins!</p>`;
+				msg = `<div class="levelTransitionMessage message">Ok, let us get you more coins!</div>`;
 				if (character == 1) {
-					msg = `<p class="levelTransitionMessage message">I know this is hard with all the obstacles, but you are doing a really good job!</p>`;
+					msg = `<div class="levelTransitionMessage message">I know this is hard with all the obstacles, but you are doing a really good job!</div>`;
 				}
 			} else if (currentLevel == 5) {
-				msg = `<p class="levelTransitionMessage message">Please enjoy this level! But take care, there are obstacles coming from the other side!</p>`;
+				msg = `<div class="levelTransitionMessage message">Please enjoy this level! But take care, there are obstacles coming from the other side!</div>`;
 				if (character == 1) {
-					msg = `<p class="levelTransitionMessage message">I want to thank you for your amazing run! You are a really good player!</p>`;
+					msg = `<div class="levelTransitionMessage message">I want to thank you for your amazing run! You are a really good player!</div>`;
 				}
 			}
 
