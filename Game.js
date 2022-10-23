@@ -219,7 +219,7 @@ var coinScoreBoard;
 var coinScoreBoardImg;
 var coinScoreBoardSupImg;
 var highscoreBoard;
-var highscoreBoardRefreshTime = 1000; //in ms
+var refreshMissingCoinsTimeout = 1000; //in ms
 
 var startArrow1;
 var startArrow2;
@@ -253,6 +253,7 @@ let musicMuted = true;
 let musicToggled = false; //this is just for muting music when game paused
 let dir; // which way character faces. 1 is right, -1 is left
 var highscore = 0;
+var missingCoins = 0;
 
 
 function KeyDown(event) {
@@ -419,12 +420,17 @@ function showInstructions() {
 	//background
 	background = new Component();
 	background.init(gameArea.canvas.width, gameArea.canvas.height, 'Pictures/background_1.jpg', 0, 0, 'image', WALKING, true);
+	
 	var modal = document.getElementById('instructionsModal');
 	modal.style.display = 'block';
+
+	updateMissingCoins();
 }
+
 function initialize_game() {
 	initialize_game(character);
 }
+
 function initialize_game(choosenCharacter) {
 	//upload coins
 	if (this.collectedCoins > 0) {
@@ -829,6 +835,8 @@ function gameOver() {
 	}
 	var modal = document.getElementById('gameOverModal');
 	modal.style.display = 'block';
+
+	updateCollectedCoins();
 	updateMissingCoins();
 
 	audio = document.getElementById('bgm');
@@ -1315,7 +1323,11 @@ function resumeGame() {
 //update labels which show missing coins
 function updateMissingCoins() {
 	let missingCoins = window.fb.getMissingCoins();
-	domUpdateInnerTextForClassName("missing-coins", missingCoins);
+	domUpdateInnerTextForClassName("missing-coins", missingCoins, true);
+}
+
+function updateCollectedCoins() {
+	domUpdateInnerTextForClassName("coins-collected", collectedCoins, true);
 }
 
 function gameCompleteUploadCoins() {
@@ -1329,22 +1341,32 @@ function gameCompleteUploadCoins() {
 	//TODO: show success info for coin upload
 }
 
-setTimeout(refreshHighscore, highscoreBoardRefreshTime);
+setTimeout(refreshMissingCoins, refreshMissingCoinsTimeout);
 
-function refreshHighscore() {
+function refreshMissingCoins() {
 	var currentValue = window.fb.getMissingCoins();
 	console.log("got current value", currentValue);
-	if (currentValue != highscore) {
+	if (currentValue != missingCoins) {
 		console.log("called update");
-		highscore = currentValue;
+		missingCoins = currentValue;
+		updateMissingCoins();
 	}
 }
 
-function domUpdateInnerTextForClassName(className, innerText) {
+function domUpdateInnerTextForClassName(className, innerText, showAsFormattedNumber) {
+
+	if(showAsFormattedNumber) {
+		innerText = numberWithCommas(innerText);
+	}
+
 	var elements = document.getElementsByClassName(className);
 	if(elements) {
 		for (var i = 0; i < elements.length; i++) {
 			elements[i].innerText = innerText;
 		}
 	}
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
