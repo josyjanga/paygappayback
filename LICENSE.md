@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2017 Edward Dunn
+Copyright (c) 2022 Elisabeth Zeilinger
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
