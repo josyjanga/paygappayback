@@ -176,7 +176,7 @@ const LEVEL_CLOUDS = [{
 
 //END CONFIG
 
-const font = 'Share Tech Mono';
+const font = 'SpecialElite-Regular.ttf';
 const totalLevels = 5; //This constant is very important--it tells the game how many levels it has.
 const coinWidth = 30;
 const LEVEL_COMPLETION_TIME = 1000;
@@ -1305,3 +1305,6 @@ function resumeGame() {
   }
 }
 
+function addToPaygap(element) {
+
+}
