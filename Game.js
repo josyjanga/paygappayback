@@ -219,7 +219,7 @@ var coinScoreBoard;
 var coinScoreBoardImg;
 var coinScoreBoardSupImg;
 var highscoreBoard;
-var highscoreBoardRefreshTime = 1000; //in ms
+var refreshMissingCoinsTimeout = 1000; //in ms
 
 var startArrow1;
 var startArrow2;
@@ -253,6 +253,7 @@ let musicMuted = true;
 let musicToggled = false; //this is just for muting music when game paused
 let dir; // which way character faces. 1 is right, -1 is left
 var highscore = 0;
+var missingCoins = 0;
 
 
 function KeyDown(event) {
@@ -1340,14 +1341,15 @@ function gameCompleteUploadCoins() {
 	//TODO: show success info for coin upload
 }
 
-setTimeout(refreshHighscore, highscoreBoardRefreshTime);
+setTimeout(refreshMissingCoins, refreshMissingCoinsTimeout);
 
-function refreshHighscore() {
+function refreshMissingCoins() {
 	var currentValue = window.fb.getMissingCoins();
 	console.log("got current value", currentValue);
-	if (currentValue != highscore) {
+	if (currentValue != missingCoins) {
 		console.log("called update");
-		highscore = currentValue;
+		missingCoins = currentValue;
+		updateMissingCoins();
 	}
 }
 
