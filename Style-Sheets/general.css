@@ -5,31 +5,45 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'handle';
+  src: url('../Fonts/Handlee-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 html, body {
   font-family: 'specialelite', monospace;
   margin: 0;
   padding: 0;
+  font-size: 100%;
 }
 body {
-  line-height: 1.6em;
+  line-height: 1.4em;
   font-weight: normal;
   box-sizing: border-box;
-  font-size: 100%;
   word-break: break-word;
+}
+main {
+  font-size: 0.9em;
 }
 h2 {
   margin-bottom: 0.7em;
   margin-top: 1.5em;
-  text-align: center;
+  
 }
 h2 span {
   background: #fcff4a99;
     text-align: center;
     padding: 0 0.5em;
 }
+.modal h2 {
+  text-align: center;
+}
 p {
   margin-top: 0.5em;
-  margin-bottom: 1em;
+  margin-bottom: 0;
 }
 
 ul {
@@ -65,4 +79,15 @@ button:focus, button:hover {
   width: 10em;
   text-align: center;
   display: inline;
+}
+
+#levelTransitiondynamicModalContent {
+  background: #ffffd1;
+  margin: 1em;
+  padding: 0.3em;
+  border: 5px dotted;
+}
+
+#levelTransitiondynamicModalContent {
+  font-family: 'handle', serif;
 }
