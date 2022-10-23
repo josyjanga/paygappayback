@@ -106,10 +106,10 @@
 
 			<h2><span>Game Over</span></h2>
 
-			<p class="gameOverDesc">Collected coins: <strong class="coins-collected"></strong></p>
+			<p class="gameOverDesc">Collected coins: <strong class="collected-coins"></strong></p>
 			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. Missing coins:<br><strong class="missing-coins"></strong></p>
 
-			<button type="button" onClick="gameOverRestartGame(this)">Add coins to gender pay gap and restart game</button>
+			<button type="button" class="upload-coins" onClick="gameOverRestartGame(this)">Add coins to gender pay gap and restart game</button>
 
 		</div>
 	</div>
@@ -125,9 +125,11 @@
 				</p>
 			</div>
 
-			<button type="button" id="btnSuccessUploadCoins" onClick="gameCompleteUploadCoins()">
-				Upload coins
-			</button>
+			
+			<p class="gameOverDesc">Collected coins: <strong class="collected-coins"></strong></p>
+			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. Missing coins:<br><strong class="missing-coins"></strong></p>
+
+			<button type="button" class="upload-coins" onClick="gameCompleteUploadCoins(this)">Upload coins</button>
 
 			<div class="restartArea">
 				<!--Play button-->
