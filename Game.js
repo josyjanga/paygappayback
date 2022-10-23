@@ -219,6 +219,7 @@ var coinScoreBoard;
 var coinScoreBoardImg;
 var coinScoreBoardSupImg;
 var highscoreBoard;
+var highscoreBoardRefreshTime = 1000; //in ms
 
 var startArrow1;
 var startArrow2;
@@ -426,7 +427,7 @@ function initialize_game() {
 }
 function initialize_game(choosenCharacter) {
 	//upload coins
-	if(this.collectedCoins > 0) {
+	if (this.collectedCoins > 0) {
 		window.fb.addCoins(this.collectedCoins);
 	}
 
@@ -492,7 +493,7 @@ function startLevel() {
 
 	highscoreBoard = new Component();
 	highscoreBoard.init('20px', 'Consolas', 'black', 20, 40, 'text', WALKING);
-	highscoreBoard.text = 'HIGHSCORE:' + highscore;
+	highscoreBoard.text = '';
 
 	//startArrow
 	startArrow1 = new Component();
@@ -1326,4 +1327,24 @@ function gameCompleteUploadCoins() {
 	alert("missing coins: " + missingCoins);
 
 	//TODO: show success info for coin upload
+}
+
+setTimeout(refreshHighscore, highscoreBoardRefreshTime);
+
+function refreshHighscore() {
+	var currentValue = window.fb.getMissingCoins();
+	console.log("got current value", currentValue);
+	if (currentValue != highscore) {
+		console.log("called update");
+		highscore = currentValue;
+	}
+}
+
+function domUpdateInnerTextForClassName(className, innerText) {
+	var elements = document.getElementsByClassName(className);
+	if(elements) {
+		for (var i = 0; i < elements.length; i++) {
+			elements[i].innerText = innerText;
+		}
+	}
 }
