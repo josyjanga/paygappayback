@@ -81,13 +81,10 @@ button:focus, button:hover {
   display: inline;
 }
 
-#levelTransitiondynamicModalContent {
+#levelTransitiondynamicModalContent, #levelTransitiondynamicModalContent2 {
   background: #ffffd1;
   margin: 1em;
   padding: 0.3em;
   border: 5px dotted;
-}
-
-#levelTransitiondynamicModalContent {
   font-family: 'handle', serif;
 }
