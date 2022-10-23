@@ -101,12 +101,11 @@
 		<div class="modal-content">
 
 			<img class="gameOverLabel" src="Pictures/game_over.png" alt="GAME OVER">
-			<p class="gameOverDesc">Press RESTART button or Space to restart the game.</p>
 
-			<div class="restartButton">
-				<img class="buttonImages" src="Pictures/restart.png" width="100%" onClick="initialize_game(character)"
-					alt="RestartButton" />
-			</div>
+			<p class="gameOverDesc">TODO gender paygap descripton with coins to meet goal: <strong class="missing-coins"></strong></p>
+
+			<button type="button" onClick="initialize_game(character)">Restart and add coins to gender pay gap</button>
+
 		</div>
 	</div>
 
@@ -115,16 +114,21 @@
 			<img class="gameOverLabel" src="Pictures/victory.png" alt="VICTORY">
 			<p class="gameOverDesc">You completed the game! Awesome Work!</p>
 			<p id="voice" class="levelTransitionMessage"><img src="Pictures/voice.png" alt="Voice character with 2 eyes"></p>
+			
 			<p id="gameOverInfo"></p>
-			<div class="restartArea">
 
+			<button type="button" id="btnSuccessUploadCoins" onClick="gameCompleteUploadCoins()">
+				Upload coins
+			</button>
+
+			<div class="restartArea">
 				<!--Play button-->
-			<h3>Do you want to play again?</h3>
-			Maybe this time, try to play with the other character, to have another experience ;)
-			<div class="startButton">
-				<button onClick="initialize_game(1)" id="btnfem" class="btn-start btn-female">Female</button>
-				<button onClick="initialize_game(0)" id="btnmale" class="btn-start btn-male">Male</button>
-			</div>
+				<h3>Do you want to play again?</h3>
+				Maybe this time, try to play with the other character, to have another experience ;)
+				<div class="startButton">
+					<button onClick="initialize_game(1)" id="btnfem" class="btn-start btn-female">Female</button>
+					<button onClick="initialize_game(0)" id="btnmale" class="btn-start btn-male">Male</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -252,9 +256,11 @@
 			<img class="gameOverLabel" src="Pictures/victory.png" alt="VICTORY">
 			<p class="levelTransitionMessage">Level complete!</p>
 			<p class="levelTransitionMessage">Press c to continue</p>
-			<div class="resumeButton">
-				<img class="button" src="Pictures/resume.png" width="100%" onClick="resumeGame()" alt="ResumeGame" />
-			</div>
+
+			<button type="button" class="" onClick="resumeGame()">
+				Go to next level
+			</button>
+			
 			<div id="levelTransitiondynamicModalContent"></div>
 		</div>
 	</div>
@@ -296,58 +302,9 @@
 		</div>
 	</div>
 
-	<script type="module">
-		import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-app.js'
+	<script src="firebase.js" type="module"></script>
+	<script src="data.js" type="text/javascript"></script>
 
-		// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-		import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-analytics.js'
-
-		// Add Firebase products that you want to use
-		import { getAuth } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js'
-		import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-firestore.js'
-		import { getDatabase, ref, get, set, child, push, update, runTransaction } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js";
-
-		// TODO: Add SDKs for Firebase products that you want to use
-		// https://firebase.google.com/docs/web/setup#available-libraries
-
-		// Your web app's Firebase configuration
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		const firebaseConfig = {
-		apiKey: "AIzaSyBxXyl0q3avlL60VFrMh2faYAOhmcXgDwg",
-		authDomain: "paygap-payback.firebaseapp.com",
-		projectId: "paygap-payback",
-		storageBucket: "paygap-payback.appspot.com",
-		messagingSenderId: "1020192246724",
-		appId: "1:1020192246724:web:6b13bfcde8e0fcc4ce3291",
-		measurementId: "G-EM48ZRX044",
-		databaseURL: "https://paygap-payback-default-rtdb.europe-west1.firebasedatabase.app/"
-		};
-
-		// Initialize Firebase
-		const app = initializeApp(firebaseConfig);
-		const coins = 'coins';
-
-		//add coins 
-		function fbAddCoins(value) {
-
-			const dbRef = getDatabase();
-			const coinsRef = ref(dbRef, coins);
-
-			runTransaction(coinsRef, (c) => {
-				if (typeof(c) != "undefined" && c != null) {
-					c += value;
-				}
-				return c;
-			});
-
-		}
-
-		document.addEventListener("DOMContentLoaded", function (event) {
-			// fbAddCoins(100);
-		});
-	</script>
-
-	<script src="data.js"></script>
 </body>
 
 </html>
