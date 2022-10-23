@@ -432,9 +432,12 @@ function initialize_game() {
 }
 
 function initialize_game(choosenCharacter) {
+
+	domEnableForClassName("upload-coins");
+	
 	//upload coins
-	if (this.collectedCoins > 0) {
-		window.fb.addCoins(this.collectedCoins);
+	if (collectedCoins > 0) {
+		window.fb.addCoins(collectedCoins);
 	}
 
 	character = choosenCharacter;
@@ -855,6 +858,8 @@ function restartGame() {
 }
 
 function gameComplete() {
+	updateCollectedCoins();
+	updateMissingCoins();
 	var modal = document.getElementById('gameCompleteModal');
 	var gameinfo = document.getElementById('gameOverInfo');
 	var msggame = `You mastered all levels! I want to tell you a little secret: You are the top earning player, you chose the male character and collected lots of coins and I made sure that you do not have lots of obstacles in your way, haha, everything for your advantage!`;
@@ -1327,14 +1332,7 @@ function updateMissingCoins() {
 }
 
 function updateCollectedCoins() {
-	domUpdateInnerTextForClassName("coins-collected", collectedCoins, true);
-}
-
-function gameCompleteUploadCoins() {
-	window.fb.addCoins(this.collectedCoins);
-	collectedCoins = 0;
-	currentCoins = 0;
-	//TODO: show success info for coin upload
+	domUpdateInnerTextForClassName("collected-coins", collectedCoins, true);
 }
 
 setInterval(refreshMissingCoins, refreshMissingCoinsInterval);
@@ -1362,18 +1360,31 @@ function domUpdateInnerTextForClassName(className, innerText, showAsFormattedNum
 	}
 }
 
+function domEnableForClassName(className) {
+	var elements = document.getElementsByClassName(className);
+	if (elements) {
+		for (var i = 0; i < elements.length; i++) {
+			elements[i].disabled = false;
+		}
+	}
+}
+
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function gameOverRestartGame(sender) {
-
 	sender.disabled = true;
-
 	//count up/down
 	countDownMissingCoins().then(() => {
 		initialize_game(character);
 		sender.disabled = false;
+	});
+}
+
+function gameCompleteUploadCoins(sender) {
+	sender.disabled = true;
+	countDownMissingCoins().then(() => {
 	});
 }
 
@@ -1393,7 +1404,7 @@ function countDownMissingCoins() {
 				counts--;
 				missingCoins--;
 				domUpdateInnerTextForClassName("missing-coins", missingCoins, true);
-				domUpdateInnerTextForClassName("coins-collected", counts, true);
+				domUpdateInnerTextForClassName("collected-coins", counts, true);
 
 				setTimeout(countDown, timeout);
 			}
@@ -1405,3 +1416,4 @@ function countDownMissingCoins() {
 		setTimeout(countDown);
 	});
 }
+
