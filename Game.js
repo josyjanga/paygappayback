@@ -419,12 +419,17 @@ function showInstructions() {
 	//background
 	background = new Component();
 	background.init(gameArea.canvas.width, gameArea.canvas.height, 'Pictures/background_1.jpg', 0, 0, 'image', WALKING, true);
+	
 	var modal = document.getElementById('instructionsModal');
 	modal.style.display = 'block';
+
+	updateMissingCoins();
 }
+
 function initialize_game() {
 	initialize_game(character);
 }
+
 function initialize_game(choosenCharacter) {
 	//upload coins
 	if (this.collectedCoins > 0) {
@@ -829,6 +834,8 @@ function gameOver() {
 	}
 	var modal = document.getElementById('gameOverModal');
 	modal.style.display = 'block';
+
+	updateCollectedCoins();
 	updateMissingCoins();
 
 	audio = document.getElementById('bgm');
@@ -1316,6 +1323,10 @@ function resumeGame() {
 function updateMissingCoins() {
 	let missingCoins = window.fb.getMissingCoins();
 	domUpdateInnerTextForClassName("missing-coins", missingCoins);
+}
+
+function updateCollectedCoins() {
+	domUpdateInnerTextForClassName("coins-collected", collectedCoins);
 }
 
 function gameCompleteUploadCoins() {
