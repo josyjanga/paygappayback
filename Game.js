@@ -1313,15 +1313,8 @@ function resumeGame() {
 
 //update labels which show missing coins
 function updateMissingCoins() {
-
-	window.fb.getMissingCoins()
-		.then((missingCoins) => {
-			console.log("missing coins are", missingCoins);
-			domUpdateInnerTextForClassName("missing-coins", missingCoins);
-		})
-		.catch((error) => {
-			console.error(error);
-		});
+	let missingCoins = window.fb.getMissingCoins();
+	domUpdateInnerTextForClassName("missing-coins", missingCoins);
 }
 
 function gameCompleteUploadCoins() {
@@ -1329,12 +1322,8 @@ function gameCompleteUploadCoins() {
 	collectedCoins = 0;
 	currentCoins = 0;
 
-	window.fb.getMissingCoins()
-		.then((missingCoins) => {
-			alert("missing coins: " + missingCoins);
-		})
-		.catch((error) => {
-			console.error(error);
-		});
-	//TODO: show success modal!
+	let missingCoins = window.fb.getMissingCoins();
+	alert("missing coins: " + missingCoins);
+
+	//TODO: show success info for coin upload
 }
