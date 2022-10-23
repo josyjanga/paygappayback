@@ -1323,11 +1323,11 @@ function resumeGame() {
 //update labels which show missing coins
 function updateMissingCoins() {
 	let missingCoins = window.fb.getMissingCoins();
-	domUpdateInnerTextForClassName("missing-coins", missingCoins);
+	domUpdateInnerTextForClassName("missing-coins", missingCoins, true);
 }
 
 function updateCollectedCoins() {
-	domUpdateInnerTextForClassName("coins-collected", collectedCoins);
+	domUpdateInnerTextForClassName("coins-collected", collectedCoins, true);
 }
 
 function gameCompleteUploadCoins() {
@@ -1353,11 +1353,20 @@ function refreshMissingCoins() {
 	}
 }
 
-function domUpdateInnerTextForClassName(className, innerText) {
+function domUpdateInnerTextForClassName(className, innerText, showAsFormattedNumber) {
+
+	if(showAsFormattedNumber) {
+		innerText = numberWithCommas(innerText);
+	}
+
 	var elements = document.getElementsByClassName(className);
 	if(elements) {
 		for (var i = 0; i < elements.length; i++) {
 			elements[i].innerText = innerText;
 		}
 	}
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
