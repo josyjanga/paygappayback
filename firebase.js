@@ -6,7 +6,7 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase
 // Add Firebase products that you want to use
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js'
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-firestore.js'
-import { getDatabase, ref, get, set, child, push, update, runTransaction } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js";
+import { getDatabase, ref, get, set, child, push, update, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,14 +26,27 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const coins = 'coins';
-const targetCoins = 'targetCoins';
+const nameCoins = 'coins';
+const nameTargetCoins = 'targetCoins';
+const db = getDatabase();
+const coinsRef = ref(db, nameCoins);
+const targetCoinsRef = ref(db, nameTargetCoins);
+let globalCoinValue = 0;
+let globalCoinTarget = 0;
+
+//add listener for coins to always have the correct value for 
+onValue(coinsRef, (snapshot) => {
+    const data = snapshot.val();
+    globalCoinValue = data;
+});  
+onValue(targetCoinsRef, (snapshot) => {
+    const data = snapshot.val();
+    globalCoinTarget = data;
+}); 
 
 //add coins 
 function addCoins(value) {
-    const dbRef = getDatabase();
-    const coinsRef = ref(dbRef, coins);
-
+    const coinsRef = ref(db, nameCoins);
     runTransaction(coinsRef, (c) => {
         if (typeof (c) != "undefined" && c != null) {
             c += value;
@@ -44,31 +57,9 @@ function addCoins(value) {
 
 //get missing coins
 function getMissingCoins() {
-    return new Promise((resolve, reject) => {
-        const dbRef = ref(getDatabase());
-        get(child(dbRef, coins)).then((ssCoins) => {
-            if(ssCoins.exists()) {
-                var c = ssCoins.val();
-
-                get(child(dbRef, targetCoins)).then((ssTargetCoins) => {
-
-                    if(ssTargetCoins.exists()) {
-                        var tc = ssTargetCoins.val();
-                        var result = tc > c ? tc - c : 0;
-                        resolve(result);
-                    }
-    
-                }).catch((error) => {
-                    console.error(error);
-                    reject(0);
-                });
-            }
-            
-        }).catch((error) => {
-            console.error(error);
-            reject(0);
-        });
-    });
+    return globalCoinTarget > globalCoinValue
+        ? globalCoinTarget - globalCoinValue
+        : 0;
 }
 
 window.fb = {
