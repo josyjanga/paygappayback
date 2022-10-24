@@ -64,69 +64,69 @@ const specialKeys = {
 
 const LEVEL_ENEMIES = [ //The y2 variable dictates how high up the unit starts
 	[{
-		name: 'circle',
-		width: 36,
-		height: 36,
-		y2: 200
-	}, {
-		name: 'cross',
-		width: 46,
-		height: 53,
-		y2: 200
-	}],
-	[{
-		name: 'circle',
-		width: 36,
-		height: 36,
-		y2: 200
-	}, {
-		name: 'circlecircle',
-		width: 45,
-		height: 44,
-		y2: 197
-	}],
-	[{
-		name: 'circle',
-		width: 30,
-		height: 36,
-		y2: 200
-	}, {
-		name: 'rectpoints',
-		width: 40,
-		height: 44,
-		y2: 200
-	}],
-	[{
-		name: 'circle',
-		width: 36,
-		height: 36,
-		y2: 200
-	}, {
-		name: 'rectangle',
-		width: 40,
-		height: 44,
-		y2: 220
-	}],
-	[{
-		name: 'circle',
-		width: 30,
-		height: 36,
-		y2: 200
-	}, {
-		name: 'lines',
+		name: 'bird',
 		width: 50,
-		height: 50,
-		y2: 220
+		height: 40,
+		y2: 205
 	}, {
-		name: 'triangle',
-		width: 45,
-		height: 50,
-		y2: 200
-	}, {
-		name: 'square',
+		name: 'obstacle',
 		width: 50,
-		height: 50,
+		height: 40,
+		y2: 208
+	}],
+	[{
+		name: 'birdblue',
+		width: 71,
+		height: 56,
+		y2: 195
+	}, {
+		name: 'tree',
+		width: 50,
+		height: 40,
+		y2: 210
+	}],
+	[{
+		name: 'bird',
+		width: 50,
+		height: 40,
 		y2: 200
+	}, {
+		name: 'obstacle',
+		width: 50,
+		height: 40,
+		y2: 210
+	}],
+	[{
+		name: 'birdorange',
+		width: 50,
+		height: 40,
+		y2: 205
+	}, {
+		name: 'treeorange',
+		width: 50,
+		height: 40,
+		y2: 210
+	}],
+	[{
+		name: 'bird',
+		width: 50,
+		height: 40,
+		y2: 195
+	}, {
+		name: 'obstacle',
+		width: 50,
+		height: 40,
+		y2: 210
+	}, {
+		name: 'stabber',
+		width: 30,
+		height: 30,
+		y2: 180
+	}, {
+		name: 'dog',
+		width: 50,
+		height: 40,
+		y2: 212
 	}]
 ];
 
@@ -179,7 +179,7 @@ const LEVEL_CLOUDS = [{
 const font = 'SpecialElite-Regular.ttf';
 const totalLevels = 5; //This constant is very important--it tells the game how many levels it has.
 const coinWidth = 30;
-const LEVEL_COMPLETION_TIME = 3000;
+const LEVEL_COMPLETION_TIME = 1000;
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 100);
 const MAX_VARIABLES_ENEMIES_0 = Math.floor(LEVEL_COMPLETION_TIME / 300);
 const MAX_VARIABLES_COINS_0 = Math.floor(LEVEL_COMPLETION_TIME / 50);
@@ -474,10 +474,20 @@ function startLevel() {
 	dir = 1; //Begin facing to the right
 	xPos = -5;
 
+	
 	//player character
+
+	/*if(playerCharacter != null && currentLevel > 1) {
+		console.log(playerCharacter);
+		x = playerCharacter.x;
+		y = playerCharacter.y;
+	}*/
+
 	playerCharacter = new Component();
 	let char = LEVEL_PLAYER_CHARACTERS[character];
-	playerCharacter.init(60, 70, `Pictures/${char.name}.svg`, char.x2, char.y2, 'image', WALKING, undefined, char.name);
+	var x = char.x2;
+	var	y = char.y2;
+	playerCharacter.init(60, 70, `Pictures/${char.name}.svg`, x, y, 'image', WALKING, undefined, char.name);
 	playerCharacter.jumpCooldown = false; //These cooldowns let our system know whether a certain key has recently been
 	playerCharacter.leftCooldown = false; //pressed--"false" means that the key is not on cooldown and should be
 	playerCharacter.rightCooldown = false;//acknowledged normally.
@@ -543,7 +553,7 @@ function startLevel() {
 			x = Math.floor(Math.random() * (-i * (gameArea.canvas.width / 2)));
 		}
 
-		enemyCharacters[i].init(enemy.width, enemy.height, `Pictures/${enemy.name}.png`, x, enemy.y2, 'image', moveType);
+		enemyCharacters[i].init(enemy.width, enemy.height, `Pictures/${enemy.name}.svg`, x, enemy.y2, 'image', moveType);
 		if(character == 0 && i%2 == 0) {
 			enemyCharacters[i].setAlive(false);
 		}
@@ -999,6 +1009,7 @@ function updateGameArea() {
 		if (currentLevel === totalLevels) gameComplete();
 		else {
 			currentLevel++;
+			//resumeGame();
 			var levelTransitionModal = document.getElementById('levelTransitionModal');
 			levelTransitionModal.style.display = 'block';
 			var levelTransitionModalContent = document.getElementById('levelTransitiondynamicModalContent');

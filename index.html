@@ -11,7 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="Style-Sheets/GameOverModal.css">
 	<link rel="stylesheet" type="text/css" href="Style-Sheets/GameCompleteModal.css">
 	<link rel="stylesheet" type="text/css" href="Style-Sheets/general.css">
-
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#ffc40d">
+	<meta name="theme-color" content="#ffffff">
 
 	<!--Main game script-->
 	<script type="text/javascript" src="Game.js"></script>
@@ -69,8 +75,8 @@
 
 		<div class="modal-content">
 			<h2>Welcome!</h2>
-			<p>This is a game about the gender pay gap. Choose a character and collect coins to help to settle this gap. For this game a gender paygap of 3,250 coins was given.</p>
-			<p>Missing coins: <span class="missing-coins"></span></p>
+			<p>This is a game about the gender pay gap. Choose a character and collect coins to help to settle this gap. For this game a gender paygap of 3,250 coins is given. The coins of every player in the world will help to settle this pay gap.</p>
+			<p>Missing coins: <span class="missing-coins"></span> of total 3,250</p>
 			<p>If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.</p>
 			<h3>Instructions <button id="more">+</button></h3>
 			<div id="imore">
@@ -108,7 +114,7 @@
 
 			<p class="gameOverDesc">Collected coins: <strong class="collected-coins"></strong></p>
 			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. </p>
-			Missing coins: <strong class="missing-coins"></strong> of total 3,250</p>
+			<p>Missing coins: <strong class="missing-coins"></strong> of total 3,250</p>
 
 			<button type="button" class="upload-coins" onClick="gameOverRestartGame(this)">Add coins to gender pay gap and restart game</button>
 
@@ -124,11 +130,17 @@
 					<img src="Pictures/voice.png" alt="Voice character with 2 eyes">
 					<div id="gameOverInfo"></div>
 				</p>
+				
 			</div>
 
 			
+			
+			
+
 			<p class="gameOverDesc">Collected coins: <strong class="collected-coins"></strong></p>
-			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. Missing coins:<br><strong class="missing-coins"></strong></p>
+			<p class="gameOverDesc">Missing coins: <strong class="missing-coins"></strong> of total 3,250</p>
+
+			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.</p>
 
 			<button type="button" class="upload-coins" onClick="gameCompleteUploadCoins(this)">Upload coins</button>
 
