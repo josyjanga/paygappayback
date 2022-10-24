@@ -578,6 +578,9 @@ function startLevel() {
 		var y = Math.floor(Math.random() * 150 + 30); //150 is canvas height - baseline(150) - char height - 30 (space on top)
 		coins[i] = new Component();
 		coins[i].init(coinWidth, coinWidth, 'Pictures/coiny.png', x, y, 'image', WALKING);
+		if(character == 1 && i%2 == 0) {
+			coins[i].setAlive(false);
+		}
 	}
 
 	//call start function
