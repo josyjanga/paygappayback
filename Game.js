@@ -487,7 +487,7 @@ function startLevel() {
 	let char = LEVEL_PLAYER_CHARACTERS[character];
 	var x = char.x2;
 	var	y = char.y2;
-	playerCharacter.init(60, 70, `Pictures/${char.name}.svg`, x, y, 'image', WALKING, undefined, char.name);
+	playerCharacter.init(50, 60, `Pictures/${char.name}.svg`, x, y, 'image', WALKING, undefined, char.name);
 	playerCharacter.jumpCooldown = false; //These cooldowns let our system know whether a certain key has recently been
 	playerCharacter.leftCooldown = false; //pressed--"false" means that the key is not on cooldown and should be
 	playerCharacter.rightCooldown = false;//acknowledged normally.
