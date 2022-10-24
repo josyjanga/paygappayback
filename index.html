@@ -69,7 +69,7 @@
 
 		<div class="modal-content">
 			<h2>Welcome!</h2>
-			<p>This is a game about the gender pay gap. In this game you will collect coins and help to settle this gap.</p>
+			<p>This is a game about the gender pay gap. Choose a character and collect coins to help to settle this gap. For this game a gender paygap of 3,250 coins was given.</p>
 			<p>Missing coins: <span class="missing-coins"></span></p>
 			<p>If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.</p>
 			<h3>Instructions <button id="more">+</button></h3>
@@ -107,7 +107,8 @@
 			<h2><span>Game Over</span></h2>
 
 			<p class="gameOverDesc">Collected coins: <strong class="collected-coins"></strong></p>
-			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. Missing coins:<br><strong class="missing-coins"></strong></p>
+			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. </p>
+			Missing coins: <strong class="missing-coins"></strong> of total 3,250</p>
 
 			<button type="button" class="upload-coins" onClick="gameOverRestartGame(this)">Add coins to gender pay gap and restart game</button>
 
@@ -147,7 +148,7 @@
 		<p class="gamePause">You paused the game!</p>
 		<p class="gamePlayPause">Press p to play</p>
 		<div class="resumeButton">
-			<img class="button" src="Pictures/resume.png" width="100%" onClick="pauseGame()" alt="ResumeGame" />
+			<img class="button" src="Pictures/play.svg" width="100%" onClick="pauseGame()" alt="ResumeGame" />
 		</div>
 	</div>
 
@@ -248,13 +249,10 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-25">
-					<label><img class="Sound" src="Pictures/audioOn.png" alt="OptionGame" onclick="dispMess('M','SOUND')"
-							id="MImg"></label>
-				</div>
+				
 				<div class="col-75">
 					<button class="button" id="buttonOptions" onClick="gameOptions()">
-						<img class="back" src="Pictures/Backbtn.png" alt="OptionGame">
+						<img class="back" src="Pictures/back.svg" alt="OptionGame">
 					</button>
 				</div>
 			</div>
@@ -263,8 +261,7 @@
 
 	<div id="levelTransitionModal" class="modal">
 		<div id="levelTransitionModalContent" class="modal-content">
-			<h2><span>Victory</span></h2>
-			<p class="levelTransitionMessage">Level complete!</p>
+			<h2><span>Level complete!</span></h2>
 			
 			<div id="coinsContent"></div>
 			<div id="levelTransitiondynamicModalContent"></div>
@@ -302,13 +299,13 @@
 		</div>
 		<div id="buttonPauseAudio">
 			<button class="button" id="buttonAudio" onClick="muteMusic()">
-				<img class="buttonImages" id="audioButton" src="Pictures/audioOn.png" alt="MuteMusic">
+				<img id="audioButton" src="Pictures/audio_no.svg" alt="MuteMusic">
 			</button>
 			<button class="button" id="buttonPause" onClick="pauseGame()">
-				<img class="buttonImages" src="Pictures/pause.png" alt="PauseGame">
+				<img  src="Pictures/pause.svg" alt="PauseGame">
 			</button>
 			<button class="button" id="buttonOptions" onClick="gameOptions()">
-				<img class="buttonImages" src="Pictures/Settingsbtn.png" alt="OptionGame">
+				<img src="Pictures/Sett.svg" alt="OptionGame">
 			</button>
 		</div>
 	</div>

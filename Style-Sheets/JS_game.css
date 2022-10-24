@@ -34,15 +34,24 @@ canvas {
 
 .resumeButton{
   margin: auto;
-  width: 150px;
-  margin-top: 40px;
-  cursor: pointer;
+    width: 8em;
+    margin-top: 40px;
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 10em;
+    /* text-align: center; */
+    height: 8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #000;
 }
-
+.resumeButton img {
+  height: 4em;
+  padding-left: 1em;
+}
 .resumeButton:hover{
-  /* IE 11 and lower don't support filter */
-  -webkit-filter: saturate(1.6);
-  filter: saturate(1.6);
+  background-color: #1c6a62;
 }
 
 .startButton{

@@ -121,12 +121,12 @@ const LEVEL_ENEMIES = [ //The y2 variable dictates how high up the unit starts
 		name: 'triangle',
 		width: 45,
 		height: 50,
-		y2: 170
+		y2: 200
 	}, {
 		name: 'square',
 		width: 50,
 		height: 50,
-		y2: 185
+		y2: 200
 	}]
 ];
 
@@ -306,14 +306,14 @@ function muteMusic() {
 	musicMuted = !musicMuted;
 	var imgButton = document.getElementById('audioButton');
 	if (musicMuted) {
-		imgButton.src = 'Pictures/audioOff.png';
+		imgButton.src = 'Pictures/audio_no.svg';
 		if (!gamePaused && !displayOptionsModal) { //If the game is running, just turn the audio off
 			audio.pause();
 		} else { //Otherwise, we need to change our musicToggled variable, so that the audio resumes properly with the game
 			musicToggled = false;
 		}
 	} else {
-		imgButton.src = 'Pictures/audioOn.png';
+		imgButton.src = 'Pictures/audio.svg';
 		if (!gamePaused && !displayOptionsModal) {
 			audio.load();
 		} else {
@@ -328,11 +328,7 @@ function pauseGame() {
 }
 
 function updateSoundPng() {
-	if (musicMuted) {
-		document.getElementById('MImg').src = 'Pictures/audioOff.png';
-	} else {
-		document.getElementById('MImg').src = 'Pictures/audioOn.png';
-	}
+	
 }
 
 function gameOptions() {
@@ -536,8 +532,7 @@ function startLevel() {
 
 	for (let i = 0; i < totalEnemies; i++) {
 		enemyCharacters[i] = new Component();
-		var x = Math.floor((Math.random() * (i * (gameArea.canvas.width / 2))) + ((gameArea.canvas.width / 2) + (gameArea.canvas.width)));
-
+		var x = Math.floor((Math.random() * (i * (gameArea.canvas.width / 2))) + ((gameArea.canvas.width / 2) * i + (gameArea.canvas.width * 1.25)));
 		//moveType describes the type of enemy: flying (0), walking (1), rotating (2), entering from the left (3)...
 		//when you want to add a new type of enemy, increment the number inside the Math.random and
 		//insert in the correct case the enemy
@@ -549,6 +544,9 @@ function startLevel() {
 		}
 
 		enemyCharacters[i].init(enemy.width, enemy.height, `Pictures/${enemy.name}.png`, x, enemy.y2, 'image', moveType);
+		if(character == 0 && i%2 == 0) {
+			enemyCharacters[i].setAlive(false);
+		}
 	}
 
 	//Loop for creating new clouds setting a random x coordinate for each. Creates a maximum of 2 clouds/second.
