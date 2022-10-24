@@ -16,8 +16,12 @@ canvas {
   border:1px solid #d3d3d3;
   background-color: #fff;
   width: 90%;
-  margin-left: 5%;
+  max-width: 900px;
+  text-align: center;
+  margin: auto auto;
+  display: block;
 }
+
 
 .restartButton{
   margin: auto;
@@ -129,10 +133,8 @@ canvas {
 #buttonPauseAudio
 {
     display: inline-block;
-	max-width: 45%;
 	text-align: center;
     vertical-align: middle;
-    margin-right: 4%;
 	float: right;
 }
 
@@ -171,4 +173,11 @@ canvas {
 }
 #imore.open {
   height: auto;
+}
+#buttonWrapper {
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+  margin: 1em auto;
+  display: block;
 }

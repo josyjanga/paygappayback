@@ -75,7 +75,7 @@
 
 		<div class="modal-content">
 			<h2>Welcome!</h2>
-			<p>This is a game about the gender pay gap. Choose a character and collect coins to help to settle this gap. For this game a gender paygap of 3,250 coins is given. The coins of every player in the world will help to settle this pay gap.</p>
+			<p>This is a game about the gender pay gap. Choose a character and collect coins to help to settle this gap. For this game a gender paygap of 3,250 coins is given. The coins of all players of this game will help to settle this pay gap.</p>
 			<p>Missing coins: <span class="missing-coins"></span> of total 3,250</p>
 			<p>If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.</p>
 			<h3>Instructions <button id="more">+</button></h3>
@@ -93,7 +93,7 @@
 				<li>Keyboard arrows and WASD: Move left and right, jump, and duck</li>
 				<li>Press 'p' to pause the game</li>
 				<li>Press 'm' to toggle music</li>
-				<li>Press Space to restart the game</li>
+				<li>Press 'r' to restart the game</li>
 			</ul>
 		</div>
 			<!--Play button-->
@@ -113,8 +113,9 @@
 			<h2><span>Game Over</span></h2>
 
 			<p class="gameOverDesc">Collected coins: <strong class="collected-coins"></strong></p>
-			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. </p>
+			
 			<p>Missing coins: <strong class="missing-coins"></strong> of total 3,250</p>
+			<p class="">Your coins will be added to the gender pay gap of this game. If you want to read more about this topic, please <a href="paygap.html" target="_blank">go to the explanation page about gender pay gap</a>.</p>
 
 			<button type="button" class="upload-coins" onClick="gameOverRestartGame(this)">Add coins to gender pay gap and restart game</button>
 
@@ -124,7 +125,7 @@
 	<div id="gameCompleteModal" class="modal">
 		<div class="modal-content">
 			<h2><span>Victory</span></h2>
-			<p class="gameOverDesc">You completed the game! Awesome Work!</p>
+			
 			<div id="levelTransitiondynamicModalContent2">
 				<p id="voice" class="levelTransitionMessage">
 					<img src="Pictures/voice.png" alt="Voice character with 2 eyes">
@@ -140,7 +141,7 @@
 			<p class="gameOverDesc">Collected coins: <strong class="collected-coins"></strong></p>
 			<p class="gameOverDesc">Missing coins: <strong class="missing-coins"></strong> of total 3,250</p>
 
-			<p class="gameOverDesc">Your coins will be added to the gender pay gap of this game. If you want to read more about this topic, please <a href="paygap.html">go to the explanation page about gender pay gap</a>.</p>
+			<p class="">Your coins will be added to the gender pay gap of this game. If you want to read more about this topic, please <a href="paygap.html" target="_blank">go to the explanation page about gender pay gap</a>.</p>
 
 			<button type="button" class="upload-coins" onClick="gameCompleteUploadCoins(this)">Upload coins</button>
 
@@ -287,12 +288,12 @@
 
 	<!--Game play buttons-->
 	<div id="buttonWrapper">
-		<div id="buttonRestart">
-			<button id="restartButtonLeft" class="button" onClick="restartGame()">
-				Restart
-			</button>
-		</div>
+		<button id="restartButtonLeft"  onClick="restartGame()">
+			Restart
+		</button>
 		<div id="buttonController">
+			
+
 			<button onmousedown="moveLeftMouse()" onmouseup="onMouseUp()" ontouchstart="moveLeftMouse()"
 				ontouchend="onMouseUp()">
 				Left
@@ -317,7 +318,7 @@
 				<img  src="Pictures/pause.svg" alt="PauseGame">
 			</button>
 			<button class="button" id="buttonOptions" onClick="gameOptions()">
-				<img src="Pictures/Sett.svg" alt="OptionGame">
+				<img src="Pictures/sett.svg" alt="OptionGame">
 			</button>
 		</div>
 	</div>

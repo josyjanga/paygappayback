@@ -77,18 +77,23 @@ button:focus, button:hover {
   margin: 0 auto;
 }
 
-#buttonController {
+#buttonwrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-#buttonController button {
-  width: 10em;
+#buttonWrapper {
+  justify-content: flex-end;
+  display: flex;
+}
+#buttonWrapper button {
   text-align: center;
   display: inline;
+  margin: 0;
+  
 }
 #buttonPauseAudio button {
  border: 1px dashed #000;
- margin-top: 1em;
  margin-left: 1em;
 }
 #buttonPauseAudio button img {

@@ -18,7 +18,7 @@ const userKeys = {
 	S: 83,
 	A: 65,
 	D: 68,
-	SPACE: 32,
+	R: 82,
 	P: 80,
 	M: 77,
 	C: 67
@@ -179,12 +179,12 @@ const LEVEL_CLOUDS = [{
 const font = 'SpecialElite-Regular.ttf';
 const totalLevels = 5; //This constant is very important--it tells the game how many levels it has.
 const coinWidth = 30;
-const LEVEL_COMPLETION_TIME = 1000;
+const LEVEL_COMPLETION_TIME = 3000;
 const MAX_VARIABLES = Math.floor(LEVEL_COMPLETION_TIME / 100);
-const MAX_VARIABLES_ENEMIES_0 = Math.floor(LEVEL_COMPLETION_TIME / 300);
-const MAX_VARIABLES_COINS_0 = Math.floor(LEVEL_COMPLETION_TIME / 50);
-const MAX_VARIABLES_ENEMIES_1 = Math.floor(LEVEL_COMPLETION_TIME / 50);
-const MAX_VARIABLES_COINS_1 = Math.floor(LEVEL_COMPLETION_TIME / 300); //Each of our arrays should be able to contain a maximum of 2 objects/second.
+const MAX_VARIABLES_ENEMIES_0 = Math.floor(LEVEL_COMPLETION_TIME / 100);
+const MAX_VARIABLES_COINS_0 = Math.floor(LEVEL_COMPLETION_TIME / 100);
+const MAX_VARIABLES_ENEMIES_1 = Math.floor(LEVEL_COMPLETION_TIME / 100);
+const MAX_VARIABLES_COINS_1 = Math.floor(LEVEL_COMPLETION_TIME / 100); //Each of our arrays should be able to contain a maximum of 2 objects/second.
 const FLYING = 0; //This movement type goes up and down as it travels, going from right to left.
 const WALKING = 1; //This movement type goes in a straight line from right to left--or, in some cases, doesn't move.
 const ROTATING = 2; //This movement type rotates in two dimensions, traveling from right to left.
@@ -281,7 +281,7 @@ function KeyDown(event) {
 				moveUp();
 			}
 		}
-		if (keysPressed[userKeys.SPACE]) {
+		if (keysPressed[userKeys.R]) {
 			restartGame();
 		}
 		if (keysPressed[userKeys.P]) {
