@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-app.js'
-
+import { initializeAppCheck, ReCaptchaV3Provider } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-app-check.js'
 // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.11.0/firebase-analytics.js'
 
@@ -33,6 +33,14 @@ const coinsRef = ref(db, nameCoins);
 const targetCoinsRef = ref(db, nameTargetCoins);
 let globalCoinValue = 0;
 let globalCoinTarget = 0;
+
+const appCheck = initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider('6LciGe4iAAAAAOGixngZeNGSjv9a9g7CA8E5Zh7L'),
+  
+    // Optional argument. If true, the SDK automatically refreshes App Check
+    // tokens as needed.
+    isTokenAutoRefreshEnabled: true
+  });
 
 //add listener for coins to always have the correct value for 
 onValue(coinsRef, (snapshot) => {
